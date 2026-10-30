@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "cadcraft",
   "name": "CADCraft",
   "upgradeCode": "119D7D76-0167-4A9E-8F37-09DA0235F68E",
@@ -54,3 +54,4 @@
   ],
   "mode": "dualScope"
 }
+

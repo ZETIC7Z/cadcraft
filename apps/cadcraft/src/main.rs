@@ -1,9 +1,9 @@
-//! CADCraft desktop app.
+﻿//! CADCraft desktop app.
 //!
-//! Usage: `cadcraft [--control <port>] [--sample] [files…]` (`cadcraft --help` lists the rest; see [`launch_args`])
+//! Usage: `cadcraft [--control <port>] [--sample] [filesâ€¦]` (`cadcraft --help` lists the rest; see [`launch_args`])
 //!
 //! `--control <port>` (or `CADCRAFT_CONTROL_PORT`) starts a localhost JSON-lines control server:
-//! `{"id":1,"method":"cmdline.input","params":{"text":"circle 0,0 5"}}` → `{"id":1,"ok":true,…}`.
+//! `{"id":1,"method":"cmdline.input","params":{"text":"circle 0,0 5"}}` â†’ `{"id":1,"ok":true,â€¦}`.
 //! See `cadcraft_ui_egui::control` for the methods.
 //!
 //! `CADCRAFT_VSYNC=1` presents with vsync on Linux/BSD, where the default is the low-latency
@@ -36,7 +36,7 @@ struct App {
     spacemouse: spacemouse::SpaceMouse,
     /// The desktop's light/dark choice where winit reports none (Linux, the BSDs).
     desktop_theme: desktop_theme::DesktopTheme,
-    /// Whether the OS shows animations, for the System choice of View ▸ Accessibility ▸ Animation Effects.
+    /// Whether the OS shows animations, for the System choice of View â–¸ Accessibility â–¸ Animation Effects.
     system_animations: system_animations::SystemAnimations,
     workspace: workspace::Workspace,
     workspace_error: Option<String>,
@@ -73,7 +73,7 @@ impl App {
     }
 }
 
-/// View ▸ Theme ▸ System resolves against `raw.system_theme`, which winit leaves empty on Linux
+/// View â–¸ Theme â–¸ System resolves against `raw.system_theme`, which winit leaves empty on Linux
 /// and the BSDs: the desktop's answer, where it gives one, stands in for it.
 fn follow_desktop(raw: &mut egui::RawInput, desktop: Option<egui::Theme>) {
     if desktop.is_some() {
@@ -257,7 +257,7 @@ fn main() -> eframe::Result {
         // swapchains hold two frames back under vsync (`CADCRAFT_VSYNC=1` restores vsync).
         wgpu_options: eframe::egui_wgpu::WgpuConfiguration::default().with_surface_config(surface),
         viewport: egui::ViewportBuilder::default()
-            .with_title("CADCraft")
+            .with_title("Zetica CAD")
             .with_inner_size([1600.0, 1000.0])
             .with_min_inner_size([900.0, 560.0])
             .with_drag_and_drop(true)
@@ -300,8 +300,7 @@ fn main() -> eframe::Result {
             b.with_x11();
         }));
     }
-    eframe::run_native(
-        "CADCraft",
+    eframe::run_native("Zetica CAD",
         options,
         Box::new(move |cc| {
             let mut app = CadApp::new(Session::empty(), services());
@@ -401,7 +400,7 @@ mod tests {
         }
     }
 
-    /// View ▸ Theme ▸ System on Linux: winit reports no theme, so the desktop's answer stands in;
+    /// View â–¸ Theme â–¸ System on Linux: winit reports no theme, so the desktop's answer stands in;
     /// without one (or where winit answers and the desktop doesn't) the input is left alone.
     #[test]
     fn the_desktop_answers_for_the_system_theme() {
@@ -416,3 +415,4 @@ mod tests {
         assert_eq!(raw.system_theme, None);
     }
 }
+
